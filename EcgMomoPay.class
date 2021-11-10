@@ -1,0 +1,203 @@
+
+package ecgmomopay;
+
+import java.util.Scanner;
+
+
+
+public class EcgMomoPay {
+
+            
+         
+        public static void errormess1(){
+
+          System.out.println("Invalid Service");
+          System.exit(0); 
+          
+          
+       }
+         
+        public static void errormess2(){
+
+          System.out.println("Please visit your hostel manager for clarification");
+          System.exit(0); 
+          
+       }
+         public static void errormess3(){
+
+          System.out.println("Transaction cancelled");
+          System.exit(0); 
+          
+          
+       }
+         public static void errormess4(){
+             
+          System.out.println("Incorrect pin \n Transaction cancelled");
+          System.exit(0); 
+          
+          
+       }
+         
+        
+         
+      
+          
+
+   
+        public static void hostelSelection(){
+            Scanner input = new Scanner(System.in);
+            
+             int choice;
+          System.out.println("Select your hostel");
+             System.out.println("1. Jodok\n 2. Maplins\n 3. Sammy Otu\n 4. One Don\n");
+          choice = input.nextInt();
+           while( choice >=5)
+          {
+              System.out.println("Incorrect choice");
+              choice = input.nextInt();
+              
+          }
+          
+          switch(choice) 
+          {
+              
+              case 1: roomSelection();
+              case 2: roomSelection();
+              case 3: roomSelection();
+              case 4: roomSelection();
+              break;
+              
+          } 
+         
+          
+          
+       }
+        public static void roomSelection(){
+            Scanner input = new Scanner(System.in);
+            
+             int choice;
+          System.out.println("Select your room number ");
+          System.out.println(" 1. Room 1\n 2. Room 2\n 3. Room 3\n 4. Room 4\n");
+          choice = input.nextInt();
+          
+                     while( choice >=5)
+          {
+              System.out.println("Incorrect choice");
+              choice = input.nextInt();
+              
+          }
+          
+             switch(choice)
+          {
+              case 1: appliances();
+              case 2: appliances();
+              case 3: appliances();
+              case 4: appliances();
+              break;
+          } 
+            
+          
+       }
+
+        
+          public static void appliances(){
+              Scanner input = new Scanner(System.in);
+        System.out.println("please confirm the things used in the room");
+        System.out.println("      television \n      bulb \n      fan \n      microwave\n ");
+        System.out.print("1. confirm \n2. reject\n");
+        
+        int choice;
+        choice = input.nextInt();
+        
+        switch (choice)
+        {
+            case 1: ammountOwed();
+            case 2:errormess2();
+            default: System.out.println(" incorrect choice ");
+            break;
+        }
+        
+        
+       } 
+          
+                  
+        public static void ammountOwed()
+        {
+            Scanner input = new Scanner(System.in);
+            
+        int television =10;
+        int microwave = 20;
+        int fan = 5;
+        int bulb = 15;
+        int choice;
+        int amountOwed = fan + bulb + microwave + television;
+              
+        System.out.println(" You owe " + amountOwed +"GHc ");
+        System.out.println("Would you like to accept payment to ECG.");
+        System.out.println("1. Accept\n2. Decline");
+        
+         choice = input.nextInt();
+         
+         switch(choice)
+         {
+             case 1: momoPin();
+             case 2: errormess3();
+             default: System.out.println(" incorrect choice ");
+         }
+
+        }
+        public static void momoPin()
+        {
+            Scanner input = new Scanner(System.in);
+            int sysPin = 1234;
+            int userPin;
+            System.out.println("Enter momo pin to confirm ");
+            
+            userPin = input.nextInt();
+            
+            if ( userPin == sysPin  )
+            {
+                System.out.println("You have successfully transfered 50.00 GHc to ECG " );
+                System.out.println("Thank you for your transactions ");
+                System.exit(0);
+                
+            } else { errormess4(); }
+            
+            
+            
+        }
+       
+    
+    public static void main(String[] args) {
+       
+     Scanner input = new Scanner(System.in);
+        
+        String ShortCode = ("*170#");
+        
+        System.out.println("Enter Shortcode");
+        String usershortcode  =  input.next();
+        
+        
+        int a=2;
+        while (!ShortCode.equals(usershortcode) && a != 0)
+        {
+            a--;
+            
+            System.out.println("Invalid Shortcode");
+            usershortcode = input.next();
+            
+            if ( a == 0 )
+            {
+                        errormess1();
+                
+            }
+
+        }
+        
+                     hostelSelection();
+           }
+        
+        
+    }
+    
+
